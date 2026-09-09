@@ -33,6 +33,11 @@ umd_fees_pct <- umd_fees |> mutate(pct_change = (`Fall 2026`- `Fall 2021`)/`Fall
 
 Write a few sentences about what you found in those percentages. What's the story here? What questions do you have?
 
+Student sustainability had the largest change, increasing by 150% from Fall 2021 to Fall 2026. Looking at SustainableUMD, it says "Addressing sustainability is essential because healthy water, air, and ecosystems are foundational to a thriving society." Based on the graphic, it appears that the university has stepped-up its efforts in having a healthy environment. 
+
+Another stat that stood out was the 58% increase in shuttle bus fees. Walking around campus, I have seen more electric buses so that may have something to do with the increase. There is also a notable increase from Fall 2023 to Fall 2024 (16%); that is interesting. 
+
+One other note is the fact that athletics hasn't changed once. Who knows why it's 399 and not 400 exactly. 
 
 
 
