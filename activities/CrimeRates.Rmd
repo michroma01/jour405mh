@@ -48,7 +48,9 @@ crimes_with_rates <- crimes |> mutate(violent_rate = violent_crime_total/populat
 
 Write a few sentences about what you found in the data. What years had the highest crime rates? What years had the lowest crime rates? Does the pattern match your expectations? What might explain some of the results you found?
 
+The 90s had the highest crime rates, with eight of the top ten in the grand_total being from 1990-1997. Violent crime rates were also at its peak during this time. One of the reasons for this could be the War on Drugs involving marijuana.
 
+https://www.afro.com/baltimore-news/fbi-report-maryland-has-one-of-the-highest-rates-of-marijuana-possession-arrests-4a1a3d7d 
 
 
 When you are done, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
