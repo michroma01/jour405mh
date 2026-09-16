@@ -39,6 +39,10 @@ team_aces |> mutate(percentile = ntile(total_aces, 100))
 
 Write a couple of sentences that puts Maryland into context with the other teams in the dataset. You can do some Internet research to help with this.
 
+Stats don't tell you everything. Despite being in the 95th percentile in aces in 2024, the Maryland Womens Volleyball team was 14-17 overall and 5-15 in conference play. Perhaps the main culprit for the Terps' record was the struggles on defense. According to the NCAA, Maryland ranked 109th in the country in blocks (67th percentile). 
+
+(https://stats.ncaa.org/rankings/national_ranking?academic_year=2025.0&division=1.0&ranking_period=72.0&sport_code=WVB&stat_seq=888.0)
+
 
 
 When you are done, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
