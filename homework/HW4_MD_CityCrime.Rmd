@@ -9,6 +9,7 @@ In this assignment, we will be working with a dataset of total crimes reported b
 You will need to load the tidyverse library and the janitor library
 
 ```{r}
+library(tidyverse)
 ```
 
 Then you'll load the data from the web. The URL for the data is: https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/md_cities_crime_2019_2020.csv. You will create a dataframe called `md_cities` that contains the data from this URL.
@@ -16,40 +17,60 @@ Then you'll load the data from the web. The URL for the data is: https://raw.git
 ### Task 2: Load the Data
 
 ```{r}
+md_cities <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/md_cities_crime_2019_2020.csv")
 ```
 ### Task 3: Calculating Rates
 
 Calculate violent and property crime rates for each city for both years using `mutate()`. You'll create four new columns: `violent_rate_2019`, `property_rate_2019`, `violent_rate_2020`, and `property_rate_2020`. You'll need to figure out the proper unit rate, given that there are varying populations. There's no perfect choice; choose the one that works best for you. Save the results to a new dataframe called `md_cities_rates`.
 
-```{r}
+```{r} 
+md_cities_rates <- md_cities |> 
+  mutate(violent_rate_2019 = violent2019 / pop2019 * 100000) |>
+  mutate(property_rate_2019 = property2019 / pop2019 * 100000) |>
+  mutate(violent_rate_2020 = violent2020 / pop2020 * 100000) |>
+  mutate(property_rate_2020 = property2020 / pop2020 * 100000)
+
 ```
 
 ### Task 4: Describe the Rates
 
 Examine the new dataframe, `md_cities_rates`, by clicking on it in the Environment tab in RStudio and sorting by the rate columns. Write a couple of sentences about the results, comparing and contrasting the cities with the highest rates (both violent and property) in 2019 and 2020. Do you see any patterns? What does this tell you about crime in Maryland cities? What's the story here?
 
-ANSWER HERE
+Violent: Baltimore and Ocean City had the top two highest violent rates in some order in 2019 and 2020. It's important to take Ocean City's numbers with a grain of salt, however. Baltimore's average population from 2019 and 2020 was 597,014. On the other hand, Ocean City's average population was 6,935, which is 86 times lower than Baltimore. Other cities that had a violent crime rate of at least 1,000 per 100,000 in 2019 were Williamsport and Elkton. In 2020, six cities had a violent crime rate of at least 1,000 per 100,000: Baltimore, Ocean City, Cambridge, Princess Anne, Kitzmiller, and Williamsport.
 
+Excluding the 37 cities that saw no violent crime in 2019, the five cities with the lowest violent crime rates in 2019 were Poolesville, Kensington, Myersville, Berlin, and Emmittsburg. The average population was 3,495. Pooleseville by far had the lowest rate at 19 per 100,000. In 2020, Frederick, Hampstead, Smithsburg, Mt. Airy, and Walkersville had the lowest crime rates. 
+
+Property: Ocean City had the highest property rate in 2019 AND 2020, with rates exceeding 10,000 per 100,000 each year. Again, we must take it with a grain of salt due to the population, but it's still a huge number. Willards and Middletown had the lowest numbers in 2019 and 2020, respectively. 
+
+Story idea: assessing the large violent and property crime rates in Ocean City in 2019 and 2020. One of the theories crime rate per 100,000 could be so high in Ocean City is because it is a popular tourist destination, especially during the summer. The population numbers do not account for the amount of visitors Ocean City gets. According to Ocean City's website, about 8 million people visit each year. Another question: how many crimes are actually committed by people who live in Ocean City? I would also look into the numbers specifically during the summer months, as that's when Ocean City is at its peak (and people are more likely to cause chaos in the heat).
 
 ### Task 5: Calculate Percentage Change
 
 Let's add two percentage change columns to your dataframe: one for violent crime rates and one for property crime rates. You'll calculate the percentage change between 2019 and 2020 for each city. Save the results to a new dataframe called `md_cities_change`.
 
 ```{r}
+md_cities_change <- md_cities_rates |> 
+  mutate(pct_change_violent = (violent2020 - violent2019) / violent2019 * 100) |>
+  mutate(pct_change_property = (property2020 - property2019) / property2019 * 100)
 ```
 
 ### Task 7: Describe Percentage Changes
 
 Look at the `md_cities_change` dataframe by clicking on it in the Environment tab in RStudio. Write a couple of sentences describing the percentage change results. What's more interesting here, the patterns or the outliers? What's the story in the data?
 
-ANSWER HERE
+From 2019 to 2020, Edmonston had the highest uptick in violent crime: 900%. Poolesville had the second highest spike. This was after having the lowest violent crime rate.
+For property rate, Crisfield had the highest: 318%
+
+Story: What I want to look at is Baltimore's violent crime rate. It decreased by 15%. It was still high, but a 15% decrease is quite signigicant. I would explore why it was so much lower (COVID had to have helped, but what else?)
+
 
 ### Task 8: Tell the Best Story
 
 Write up a lede and nutgraf of a story with the _best_ story idea you've found in this assignment. The lede should be a single sentence that summarizes the most important information in the data. The nutgraf should be a paragraph that provides more context and explains why the data is important.
 
-ANSWER HERE
+Ocean City had one of the highest violent and property crime rates per 100,000 people between 2019 and 2020. 
 
+Before looking at the data, it's important to know that the average population during this time was 6,935. But an average violent crime rate of about 1,853 per 100,000 is pretty big. The population does not account for the tourists that visit each year, which is about 8 million according to Ocean City MD's website.  
 ### Task 9: Save Your Work and Put it on GitHub
 
 Save this notebook, then commit it to your local repository. Push the changes to your GitHub repository and submit the URL for this file in ELMS.
