@@ -35,8 +35,7 @@ Load the accident data from our CSV file at https://raw.githubusercontent.com/dw
 
 # Load accident data
 
-accidents <- read.csv("http://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/daily_accidents.csv")
-
+accidents <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/daily_accidents.csv")
 ```
 
 ## Data Exploration
@@ -72,7 +71,7 @@ ggplot(accidents, aes(x = date, y = total)) +
 ### Task 2 (3 points)
 Looking at the time series visualization above, identify at least two noticeable patterns or anomalies. What questions would you want to investigate further based on this initial view of the data? How might these visual patterns translate into potential story angles?
 
-ANSWER HERE
+I noticed the drop off in accidents in 2020 (not super surprising due to the pandemic), but what about the spike that occured after? It appears that it rose a little after people got more comfortable with the pandemic in late 2020 to early 2021. But something occurred in mid to late 2021 that saw a noticable spike. It's been relatively stable, with exception to a few outliers, ever since. 
 
 The daily data is quite noisy, so let's also look at weekly patterns:
 
@@ -111,7 +110,7 @@ ggplot(accidents, aes(x = day_of_week, y = total)) +
 ### Task 3 (2 points)
 Based on the day-of-week analysis, which day(s) have the highest and lowest average accidents? Why might these patterns exist?
 
-ANSWER HERE
+The weekend (Friday, Saturday, and Sunday) has the highest average accidents, while Monday and Wednesday have the lowest averages. The weekend having the highest averages is not a surprise, as that's when a lot of activity (especially during the evenings of Friday and Saturday) happens. It makes sense that there could be more accidents during the weekdays, as that's when a lot of people are out working, but the weekend is when people (especially younger people who go out to the bars) are out.
 
 ## Calculating Z-Scores
 
@@ -123,9 +122,9 @@ Now, using the accidents dataframe, add three columns using `mutate()`: mean_acc
 # Calculate z-scores for total accidents
 accidents <- accidents |>
   mutate(
-    mean_accidents = REPLACE_ME,
-    sd_accidents = REPLACE_ME,
-    z_score = (REPLACE_ME - REPLACE_ME) / REPLACE_ME
+    mean_accidents = mean(total),
+    sd_accidents = sd(total),
+    z_score = (total - mean_accidents) / sd_accidents
   )
 
 # Display the data with z-scores
@@ -160,7 +159,8 @@ unusual_days |>
 ### Task 5 (3 points)
 Choose one of the top 10 unusual days and research what might have happened on that date. Look for weather events, holidays, major incidents, or other factors that could explain the unusual number of accidents. Briefly describe your findings and how you would incorporate this context into a story.
 
-ANSWER HERE
+A crisp October day on Friday the 29th, 2021, two days before Halloween, the first normal Halloween since COVID put 2020's edition on hold, and in the heart of College Park, MD, there was bound to be some activity. Clearly that's what happened, as 58 accidents happened. Now, PG county isn't 
+just College Park, so let's take that into account. But it shouldn't be a surprise that the Friday during Halloween Weekend in College Park was a factor.
 
 Let's visualize these unusual days:
 
@@ -190,9 +190,9 @@ Let's calculate z-scores that account for day of week patterns based on the same
 accidents <- accidents |>
   group_by(day_of_week) |>
   mutate(
-    dow_mean = REPLACE_ME,
-    dow_sd = REPLACE_ME,
-    dow_z_score = (REPLACE_ME - REPLACE_ME) / REPLACE_ME
+    dow_mean = mean_accidents,
+    dow_sd = sd_accidents,
+    dow_z_score = mean_accidents - sd_accidents / sd_accidents
   ) |>
   ungroup()
 
@@ -211,7 +211,7 @@ unusual_dow |>
 ### Task 7 (3 points)
 Compare the days that have extreme z-scores overall versus those with extreme day-of-week z-scores. How do these lists differ? What journalistic insights can you draw from comparing these two different approaches to measuring "unusual" days?
 
-ANSWER HERE
+They have wider gaps in terms of previous data. We can look at certain events that went on during that day. 
 
 Let's see how many unusual days we have for each day of the week:
 
@@ -290,7 +290,7 @@ unusual_monthly |>
 ### Task 8 (2 points)
 Based on the monthly pattern analysis, which months have the highest and lowest average accidents? Develop a hypothesis about why these seasonal patterns exist.
 
-ANSWER HERE
+October and December have the highest monthly averages; January has the lowest. Reasons why October is so high could be due to fall events, such as Halloween festivities The same can be said for December, as families could go out to look at Christmas decorations and other holiday events. 
 
 ## Identifying Extreme Outliers
 
@@ -315,9 +315,23 @@ if(nrow(extreme_outliers) > 0) {
 ### Task 9 (2 points)
 For the extreme outliers identified (z-scores beyond ±3), what do they have in common?
 
-ANSWER HERE
+All (but one) are on Friday, Saturday, or Sunday. 
 
 ## Your Best Story Pitch
 
 ### Task 10 (5 points)
 Based on all the analyses performed, craft your best story pitch, including a headline and lede. Be sure to include what kinds of sources/people you'd talk to for the story.
+
+October 29, 2021
+
+PG County sees staggering number of accidents on Friday, the 29th 
+
+As campuses return to normalcy, that means events such as Halloween Weekend also makes its return. That also means more traffic in PG County, specifically in College Park, where the party scene is high during this time. Two days before Halloween, PG County saw a whopping 58 accidents occur.
+
+Sources/people to contact: 
+
+Police
+Record of events that happened that night/day
+See if you can find specific times 
+Ask students if they had seen any people get in their car after drinking 
+
