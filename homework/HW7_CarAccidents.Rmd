@@ -33,6 +33,10 @@ Load the accident data from our CSV file at https://raw.githubusercontent.com/dw
 
 ```{r load-data}
 
+# Load accident data
+
+accidents <- read.csv("http://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/daily_accidents.csv")
+
 ```
 
 ## Data Exploration
