@@ -10,6 +10,8 @@ That difference matters more than it might seem. When a proportion is close to 5
 
 ```{r}
 
+library(tidyverse)
+
 ```
 
 ### Task 2: Load the CES data
@@ -20,6 +22,8 @@ Load the CES 2024 religion dataset from the same URL as the in-class activity an
 
 ```{r}
 
+ces <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/ces_2024_religion.csv")
+
 ```
 
 ### Task 3: Calculate the population proportion
@@ -28,6 +32,10 @@ Create a new column called `evangelical` that is `TRUE` if a respondent's `trad`
 
 ```{r}
 
+ces <- ces |>
+  mutate(evangelical = trad %in% c("White Evangelical"))
+
+proportion <- mean(ces$"White Evangelical")
 ```
 
 Write down this value. How does it compare to the unaffiliated proportion (about 0.36) from the in-class activity?
