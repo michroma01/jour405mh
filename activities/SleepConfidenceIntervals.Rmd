@@ -41,7 +41,7 @@ sleep_stats
 
 **Answer this question:** Based on these numbers alone, what would you tell the health reporter? Why might it be risky to report the average as the definitive answer for all students?
 
-ANSWER HERE
+I would tell them that that number is very positive and would satisify the CDC's sleep requirements. On the other hand, it might be risky to report this as the answer for all students, as it does not account for every student that attends the university.
 
 ### Task 3: Calculate the standard error
 
@@ -58,7 +58,7 @@ sleep_stats
 
 **Answer this question:** The standard error is much smaller than the standard deviation. Why? What does each one measure?
 
-ANSWER HERE
+Sd is based on what you already have, while the SE is based if you take more samples. 
 
 ### Task 4: Calculate a 95% confidence interval
 
@@ -79,7 +79,7 @@ sleep_stats |>
 
 **Answer this question:** Write one sentence explaining what this confidence interval means in plain English that a reader would understand.
 
-ANSWER HERE
+19 times out of 20 the true mean will fall between 7.3 and 8.2.
 
 ### Task 5: Visualize the distribution with the confidence interval
 
@@ -112,7 +112,7 @@ ggplot(sleep_data, aes(x = hours)) +
 
 **Answer this question:** Look at the chart. Notice that the confidence interval is much narrower than the spread of individual data points. Why? What's the difference between the variation in individual sleep hours and the uncertainty about the average?
 
-ANSWER HERE
+Confidence intervals is not dependent on individual data points.
 
 ### Task 6: The CDC question — is 7 hours within the interval?
 
@@ -134,7 +134,7 @@ sleep_stats |>
   b) "Students May Not Be Getting Enough Sleep, Survey Suggests"
   c) "Survey: Students Getting Recommended Amount of Sleep"
 
-ANSWER HERE
+C because it does not suggest that all students average more than 7 hours, but rather they are getting the recommended the hours.
 
 ### Task 7: What about a bigger sample?
 
