@@ -10,6 +10,7 @@ Your goal is to see firsthand how sample size affects the accuracy of estimates,
 
 ```{r}
 
+
 library(tidyverse)
 
 ```
