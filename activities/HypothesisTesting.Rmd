@@ -56,8 +56,8 @@ Let's see what the new response times look like. Replace the REPLACE_ME values.
 summary_stats <- response_data |>
   summarize(
     sample_size = n(),
-    sample_mean = mean(REPLACE_ME),
-    sample_sd = sd(REPLACE_ME),
+    sample_mean = mean(baseline_mean),
+    sample_sd = sd(baseline_sd),
     standard_error = sample_sd / sqrt(sample_size)
   )
 
