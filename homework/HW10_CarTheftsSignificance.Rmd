@@ -24,9 +24,9 @@ car_thefts <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/h
 
 We'll split the monthly data into two halves, and then ask whether there's a statistically significant difference between these periods. To do that, we'll use a t-test with our alpha at 0.05. First, fill in the hypotheses, then replace the REPLACE_ME values in the code.
 
-**Null Hypothesis:** REPLACE_ME
+**Null Hypothesis:** There is no real change/decrease 
 
-**Alternative Hypothesis:** REPLACE_ME
+**Alternative Hypothesis:** There is a real decrease
 
 ```{r}
 
@@ -46,7 +46,7 @@ t_test_periods
 
 **Answer this question:** What is the p-value? Is it less than 0.05? Can we reject the null hypothesis? What does this tell your editor?
 
-PUT ANSWERS HERE
+The p-value is 0.0000214, meaning we can reject the null hypothesis. This tells my editor that there is indeed a decrease. 
 
 ### Task 3: Visualize the comparison (4 points)
 
