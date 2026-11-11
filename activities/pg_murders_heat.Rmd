@@ -52,6 +52,8 @@ pg_murders_heat |>
 
 ### Task 6: Describe the results of both the correlation calculation and the scatterplot.
 
+THE ABOVE TEXT IS NOT MINE! I COULD NOT GET RID OF IT. MY ANSWER IS BELOW v
+
 The relationships show that in hotter months, murders tend to go upward. The same is true for cooler months, in that the cooler it is, the less murders there are. There is one outlier: March. March's average is relativley cool, yet the murders are pretty high. One theory I have is that March is sometime around the start of spring, where people come out of "hybernation" from the cold winter days. Weather starts to get warmer, thus forcing people to be outside more. 
 
 When you are done, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
