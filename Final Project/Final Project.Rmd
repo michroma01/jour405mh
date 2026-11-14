@@ -1,0 +1,17 @@
+---
+title: "final_project.Rmd"
+output: Final Project
+---
+ 
+
+```{r}
+library(tidyverse)
+```
+```{r}
+CFB_WPCT_2015to2024 <- read_csv("WPCTData.txt")
+```
+```{r}
+CFP_Expenses_2015to2024 <- read_csv("C:/Users/Owner/Downloads/CFB_Expenses_2015to2024 - Sport_Data_2024_2023_2022_2021_2020_2019_2018_2017_2016_2015 (1).csv")
+```
+
+
