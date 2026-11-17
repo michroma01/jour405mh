@@ -1,20 +1,66 @@
 ---
 title: "final_project.Rmd"
-output: Final Project
+output: html_document
 ---
  
 
 ```{r}
 library(tidyverse)
 ```
+
+The data files are stored alongside this notebook in the repository's
+`Final Project` folder. These paths are relative to that folder.
 ```{r}
-CFB_WPCT_2015to2024 <- read_csv("WPCTData.txt")
+CFB_WPCT_2015to2024 <- read_csv(
+  "WPCTData.txt",
+  show_col_types = FALSE
+) |>
+  mutate(Team = str_squish(Team))
 ```
 ```{r}
-CFP_Expenses_2015to2024 <- read_csv("C:/Users/Owner/Downloads/CFB_Expenses_2015to2024 - Sport_Data_2024_2023_2022_2021_2020_2019_2018_2017_2016_2015 (1).csv")
+CFP_Expenses_2015to2024 <- read_csv(
+  "https://raw.githubusercontent.com/michroma01/jour405mh/refs/heads/main/Final%20Project/CFB_Expenses_2015to2024%20-%20Sport_Data_2024_2023_2022_2021_2020_2019_2018_2017_2016_2015%20(1).csv",
+  show_col_types = FALSE
+) |>
+  select(`Survey Year`, Team, Expenses) |>
+  mutate(
+    Team = str_squish(Team),
+    Team = recode(
+      Team,
+      "NC State" = "North Carolina State",
+      "TCU" = "Texas Christian",
+      "UConn" = "Connecticut",
+      "UMass" = "Massachusetts",
+      "UNLV" = "Nevada-Las Vegas",
+      "Ioa" = "Iowa"
+    )
+  )
 ```
+## Join winning percentages to annual expenses
+The winning-percentage file has one row per team for the entire 2015–2024
+period. The expense file has one row per team and survey year. Joining on
+`Team` keeps each expense year and repeats the team's full-period winning
+percentage; it does not create annual winning percentages. The left join
+also retains teams without matching expense data, with missing expense values.
 
 ```{r}
+CFB_Combined_2015to2024 <- CFB_WPCT_2015to2024 |>
+  left_join(
+    CFP_Expenses_2015to2024,
+    by = "Team",
+    relationship = "one-to-many"
+  )
 
+glimpse(CFB_Combined_2015to2024)
 ```
 
+Check which teams do not have expense records:
+
+```{r}
+unmatched_teams <- CFB_WPCT_2015to2024 |>
+  anti_join(CFP_Expenses_2015to2024, by = "Team") |>
+  select(Team)
+
+unmatched_teams
+```
+Test runs I can do relate mostly to the relationship between money and winning. But looking at the early data, two teams stand out above the others in Boise State and Appalachian State. These two teams rank in the top in terms of total wins from 2015 to 2024, yet will likely rank lower in terms of total expenses. If I could make a chart or some graphic that highlights these two, I would look into that. 
