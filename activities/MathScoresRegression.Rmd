@@ -15,6 +15,11 @@ We have school-level data from Montgomery County, Pa. that includes each school'
 ### Loading the Data
 
 ```{r}
+library(tidyverse)
+```
+
+
+```{r}
 schools <- read_csv("https://raw.githubusercontent.com/dwillis/jour405_files/refs/heads/main/montgomery_pa.csv")
 ```
 
@@ -32,7 +37,7 @@ schools |> arrange(`FARMS Pct`) |> head(10)
 
 Look at the distribution of FARMS percentages. Do any values look unusual or suspicious? What might it mean if a school has a FARMS percentage of exactly 100? Write two or three sentences describing what you see and whether anything concerns you.
 
-ANSWER HERE
+I guess what concerns me is the huge gap between 8 and 10 in the highest FARMS%. The problem with schools with a 100% FARMS rate is that they're such outliers, which could lead to uneven results. It could also be that all kids are eligible for FARMS. 
 
 
 ### Task 2: Create a Scatterplot and Describe the Results
@@ -50,8 +55,7 @@ schools |>
 
 Describe what you see. Is there a clear trend? Does the regression line look like it represents the data well, or does it seem to be pulled in an odd direction? Connect what you observed in Task 1 to what you see here.
 
-ANSWER HERE
-
+According to the claim made in the beginning, it is shown that schools with a less than 50% FARMS% do score majority above the expected scores. 
 
 ### Task 3: Run the Regression Model
 
@@ -68,7 +72,7 @@ The **p-value** tells you whether the relationship is statistically significant.
 
 Report all three values and describe what they tell you. Does this model support the school board member's claim? Is this even a model worth using?
 
-ANSWER HERE
+With the p-value being at 0.1225, it is likely that the relationship is not very significant. With the adjusted r-scared being at 0.025, that basically means that a very very small amount of math scores is related to the FARMS%. And although the coefficient is positive, it is not by much. 
 
 
 ### Task 4: What's Driving the Problem? Filter and Rerun.
@@ -98,7 +102,7 @@ cat("  Adjusted R-squared:", summary(model_filtered)$adj.r.squared, "\n")
 
 How did removing those schools change the model? Did the coefficient change direction? Did the p-value or R-squared improve meaningfully? What does this tell you about the influence of suspicious data values on a regression model?
 
-ANSWER HERE
+It did improve the p-value and the coefficient. It tells us that the schools with 100% FARMS% is an outlier and therefore does not go well with the data. 
 
 
 ### Task 5: Even the Better Model Has Problems
@@ -141,4 +145,4 @@ You've now run two models, examined the data quality and seen that even a cleane
 
 Write a short story pitch (3-5 sentences) that addresses the following: Does the data support or contradict the claim? What data quality issues did you find? What would you need - different data, a different model, additional reporting - before you could responsibly publish a story about this claim? Who would you call first?
 
-ANSWER HERE
+According to the claim made earlier, the results have shown that the statements are indeed true. I would not rely on schools with a perfect participation rate, as it does not fit well with the other schools. Excluding the 100% schools makes the relationship more stable. 
