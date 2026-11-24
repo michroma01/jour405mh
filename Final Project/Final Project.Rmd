@@ -4,7 +4,7 @@ output: html_document
 ---
 Trail and Errors: 
 
-My goal was to get all the expenses from each team from each available year together. This was going to be my x-axis (the y-axis was going to be the win% of said teams). However, I struggled to get the totals I wanted. It grouped every team from each year instead of giving me the total from said teams. That made the graphs messy. With the help of Prof. Willis, he was able to provide me the proper steps to give me what I wanted, and it is reflected in the code below. That was my biggest obstacle, and now that I have it, I'm able to clearly see where teams relate in terms of money and winning. 
+My goal was to get all the expenses from each team from each available year together. This was going to be my x-axis (the y-axis was going to be the win% of said teams). However, I struggled to get the totals I wanted. It listed every year in terms of expenses for each team instead of giving me the TOTAL (10 year total) from said teams. That made the graphs messy. With the help of Prof. Willis, he was able to provide me the proper steps to give me what I wanted, and it is reflected in the code below. The dataframe CFB_Total_Expenses reflects what I was seeking and the dataframe CFB_Combined_2015to2024 includes the total expenses along with the winning percentage. The ggplot graph at the end shows the relationship between money and winning.
 
 ```{r}
 library(tidyverse)
